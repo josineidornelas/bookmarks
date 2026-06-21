@@ -1,270 +1,314 @@
 <!doctype html>
 <html>
   <head>
-    <title>AC Ewbank da Câmara - Links</title>
-	<link rel="icon" sizes="192x192" href="https://cdn.correios.com.br/v2/img/favi-ect.png">
-	
-	<style>
-	
-		/*Centers "button" in the middle of the page*/
-		body {
-		  background-color: #0C87D1;
-		  height: 100%; 
-		  width: 100%;
+    <meta charset="UTF-8">
+    <title>Josinei - Links</title>
+    <link rel="icon" sizes="192x192" href="https://cdn.correios.com.br/v2/img/favi-ect.png">
+    
+    <style>
+        /* Reseta margens e força o body a ocupar toda a altura da tela */
+        html, body {
+          margin: 0;
+          padding: 0;
+          height: 100vh;
+          font-family: Arial, sans-serif;
+        }
 
-		}
+        /* Estrutura em Grid de 3 andares: Topo (Verde), Conteúdo (Fundo), Base (Azul) */
+        #page-container {
+          display: grid;
+          grid-template-rows: 40px 1fr 40px; /* Altura fixa pro topo e rodapé, o meio se adapta */
+          min-height: 100vh;
+          box-sizing: border-box;
+        }
 
-		.fcc-btn {
-		  background-color: #009440;
-		  color: white;
-		  width: 240px;
-		  height: 40px;
-		  margin: 8px;
-		  padding: 15px 25px;
-		  text-align: center;
-		  text-decoration: none;
-		  font-size: 1.2em;
-		  border-radius: 10px;
-		  box-shadow: 5px 5px 5px black;
-		}
+        /* 1º ANDAR: Faixa Verde do Topo com a listra amarela */
+        #header-strip {
+          background-color: #0B5A2F;
+          border-bottom: 6px solid #F1C40F; /* Linha amarela integrada */
+          width: 100%;
+        }
 
-		.fcc-btn:hover {
-		  background-color: #FEDF00;
-		  
-		}
-		
-		#page-container {
-		  position: relative;
-		  min-height: 100vh;
-		  max-width: 198vh;
-		}
+        /* 2º ANDAR: Área dos botões (Fundo Off-White) */
+        #content-wrap {
+          background-color: #EBF1F5;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px; /* Margem interna para os botões não colarem nas bordas */
+          overflow-y: auto; /* Se houver botões demais para telas pequenas, cria barra de rolagem só no meio */
+          align-content: center; /* Centraliza o bloco de botões verticalmente se sobrar espaço */
+        }
 
-		#content-wrap {
-		  display: flex;
-		  flex-wrap: wrap;
-		  align-items: center;
-		  justify-content: center;
-		  padding-bottom: 2.5rem;    /* altura do rodapé */
-		}
-		
-		#footer {
-		  position: absolute;
-		  color: white;
-		  text-align: center;
-		  bottom: 0;
-		  width: 100%;
-		  height: 2.5rem;           
-		}
-			
-	</style>
-	
+        /* 3º ANDAR: Rodapé (Fundo Azul) */
+        #footer {
+          background-color: #002776;
+          color: #F7F9FA;
+          text-align: center;
+          line-height: 40px; /* Alinha o texto perfeitamente ao centro da faixa */
+          font-size: 0.9em;
+          font-weight: bold;
+          letter-spacing: 0.5px;
+        }
+
+        /* Estilização dos Botões com Aparência Tridimensional (3D) */
+        .fcc-btn {
+          background-color: #002776;
+          color: #F7F9FA;
+          width: 240px;
+          height: 54px; 
+          margin: 8px;
+          
+          /* Centralização absoluta do texto */
+          display: flex;
+          align-items: center;      
+          justify-content: center;  
+          text-align: center;       
+          line-height: 1.2;         
+          padding: 0 12px;          
+          
+          text-decoration: none;
+          font-size: 0.9em;         
+          font-weight: bold;
+          border-radius: 10px;
+          box-sizing: border-box;   
+          
+          /* Efeito 3D: Bordas falsas simulando chanfro (luz em cima, sombra embaixo) */
+          border-top: 2px solid rgba(255, 255, 255, 0.3);
+          border-left: 2px solid rgba(255, 255, 255, 0.15);
+          border-bottom: 4px solid #001643; /* Base mais escura simulando a "borda de sombra" do botão */
+          border-right: 2px solid #001643;
+          
+          /* Sombra projetada na mesa (mais densa e deslocada para baixo) */
+          box-shadow: 0 5px 10px rgba(11, 90, 47, 0.4);
+          
+          /* Transição rápida para dar sensação mecânica de clique */
+          transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s;
+        }
+
+        /* Efeito Hover (Muda para Amarelo com visual 3D adaptado) */
+        .fcc-btn:hover {
+          background-color: #F1C40F;
+          color: #002776;
+          border-top: 2px solid rgba(255, 255, 255, 0.5);
+          border-left: 2px solid rgba(255, 255, 255, 0.3);
+          border-bottom: 4px solid #B5930A; /* Base escura do amarelo */
+          border-right: 2px solid #B5930A;
+          box-shadow: 0 7px 14px rgba(11, 90, 47, 0.5);
+          transform: translateY(-2px); /* Eleva levemente o botão ao passar o mouse */
+        }
+
+        /* Efeito de Clique Real (Mecânica 3D de afundamento) */
+        .fcc-btn:active {
+          transform: translateY(2px); /* Empurra o botão para baixo */
+          border-bottom: 1px solid #001643; /* Quase some com a borda de baixo pois ele foi "pressionado" */
+          box-shadow: 0 2px 4px rgba(11, 90, 47, 0.3); /* Diminui a sombra projetada */
+        }
+    </style>
+    
   </head>
   <body>
     
-	<div id="page-container">
-	
-		<div id="content-wrap">
-	
-			<a class="fcc-btn" href="https://achei.correios.com.br/app/index.php" target="_self">Achei</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/mg/minas-gerais/corregedoria" target="_self">Acesso Fácil</a>
+    <div id="page-container">
+        
+        <!-- Faixa da bandeira no topo -->
+        <div id="header-strip"></div>
+    
+        <!-- Área central dos links -->
+        <div id="content-wrap">
+    
+            <a class="fcc-btn" href="https://achei.correios.com.br/app/index.php" target="_self">Achei</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/mg/minas-gerais/corregedoria" target="_self">Acesso Fácil</a>
 
             <a class="fcc-btn" href="http://mmg20384996:5100/" target="_self">Arruma MDV</a>
 
-			<a class="fcc-btn" href="http://ssp0106/ceofisp/sistema/gcof/gcof_direto/index.php" target="_self">Atesto Mensal AGC</a>
+            <a class="fcc-btn" href="http://ssp0106/ceofisp/sistema/gcof/gcof_direto/index.php" target="_self">Atesto Mensal AGC</a>
 
-			<a class="fcc-btn" href="https://apps.correios.com.br/biblioteca/" target="_self">Biblioteca</a>
-			
-			<a class="fcc-btn" href="https://buscacepintra.correios.com.br/" target="_self">Busca CEP</a>
+            <a class="fcc-btn" href="https://apps.correios.com.br/biblioteca/" target="_self">Biblioteca</a>
+            
+            <a class="fcc-btn" href="https://buscacepintra.correios.com.br/" target="_self">Busca CEP</a>
 
-			<a class="fcc-btn" href="http://10.86.176.230/" target="_self">Câmeras</a>
-			
-			<a class="fcc-btn" href="https://cedo.correiosnet.int/cedo/cedo_ca/default.cfm" target="_self">CEDO</a>
-			
-			<a class="fcc-btn" href="https://sqm.correios.com.br/app/index.php?boas_vindas=1" target="_self">CIE</a>
-			
-			<a class="fcc-btn" href="http://mac01012239:65423/PortalCP/transferencias.xhtml" target="_self">Comprovantes de Pagamento</a>
-			
-			<a class="fcc-btn" href="https://correiosatende.correios.com.br/" target="_self">Correios Atende</a>
+            <a class="fcc-btn" href="http://10.86.176.230/" target="_self">Câmeras</a>
+            
+            <a class="fcc-btn" href="https://cedo.correiosnet.int/cedo/cedo_ca/default.cfm" target="_self">CEDO</a>
+            
+            <a class="fcc-btn" href="https://sqm.correios.com.br/app/index.php?boas_vindas=1" target="_self">CIE</a>
+            
+            <a class="fcc-btn" href="http://mac01012239:65423/PortalCP/transferencias.xhtml" target="_self">Comprovantes de Pagamento</a>
+            
+            <a class="fcc-btn" href="https://correiosatende.correios.com.br/" target="_self">Correios Atende</a>
 
-			<a class="fcc-btn" href="https://servicos.receita.fazenda.gov.br/servicos/cpf/impressaocomprovante/consultaimpressao.asp" target="_self">CPF Imprimir</a>
+            <a class="fcc-btn" href="https://servicos.receita.fazenda.gov.br/servicos/cpf/impressaocomprovante/consultaimpressao.asp" target="_self">CPF Imprimir</a>
 
-			<a class="fcc-btn" href="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultaandamento/consultaandamento.asp" target="_self">CPF Correios</a>
+            <a class="fcc-btn" href="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultaandamento/consultaandamento.asp" target="_self">CPF Correios</a>
 
-			<a class="fcc-btn" href="https://pje.trt3.jus.br/consultaprocessual/" target="_self">Consulta TRT</a>
+            <a class="fcc-btn" href="https://pje.trt3.jus.br/consultaprocessual/" target="_self">Consulta TRT</a>
 
-			<a class="fcc-btn" href="https://josineidornelas.github.io/CVA/" target="_self">Contagem do Caixa</a>
+            <a class="fcc-btn" href="https://josineidornelas.github.io/CVA/" target="_self">Contagem do Caixa</a>
 
-			<a class="fcc-btn" href="http://snu0078/pesquisa_derat/login" target="_self">Controle de Carga - Contingência</a>
+            <a class="fcc-btn" href="http://snu0078/pesquisa_derat/login" target="_self">Controle de Carga - Contingência</a>
 
-			<a class="fcc-btn" href="https://c.correios.com.br/LimpezaUnidade" target="_self">Controle de Faxina - Contingência</a>
+            <a class="fcc-btn" href="https://c.correios.com.br/LimpezaUnidade" target="_self">Controle de Faxina - Contingência</a>
 
-			<a class="fcc-btn" href="http://mmg20384996:5123/" target="_self">Desapega</a>
+            <a class="fcc-btn" href="http://mmg20384996:5123/" target="_self">Desapega</a>
 
-			<a class="fcc-btn" href="https://ebeneficio.correios.com.br/" target="_self">E-Benefício</a>
-			
-			<a class="fcc-btn" href="https://outlook.office.com/mail/" target="_self">E-mail</a>
-			
-			<a class="fcc-btn" href="http://servicosderede/portalsrs/email_assinatura_frm.php" target="_self">E-mail Assinatura</a>
+            <a class="fcc-btn" href="https://ebeneficio.correios.com.br/" target="_self">E-Benefício</a>
+            
+            <a class="fcc-btn" href="https://outlook.office.com/mail/" target="_self">E-mail</a>
+            
+            <a class="fcc-btn" href="http://servicosderede/portalsrs/email_assinatura_frm.php" target="_self">E-mail Assinatura</a>
 
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/educacao-corporativa" target="_self">Educação Corporativa</a>
-			
-			<a class="fcc-btn" href="https://www2.correios.com.br/enderecador/encomendas/default.cfm" target="_self">Endereçador</a>
-			
-			<a class="fcc-btn" href="https://per.correiosnet.int/" target="_self">Entrega Direta</a>
-			
-			<a class="fcc-btn" href="http://erp/" target="_self">ERP</a>
-			
-			<a class="fcc-btn" href="https://faleconosco.correiosnet.int/rtc/default.cfm" target="_self">Fale Conosco</a>
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/educacao-corporativa" target="_self">Educação Corporativa</a>
+            
+            <a class="fcc-btn" href="https://www2.correios.com.br/enderecador/encomendas/default.cfm" target="_self">Endereçador</a>
+            
+            <a class="fcc-btn" href="https://per.correiosnet.int/" target="_self">Entrega Direta</a>
+            
+            <a class="fcc-btn" href="http://erp/" target="_self">ERP</a>
+            
+            <a class="fcc-btn" href="https://faleconosco.correiosnet.int/rtc/default.cfm" target="_self">Fale Conosco</a>
 
-			<a class="fcc-btn" href="http://snu0001/mastertool/" target="_self">Ferramenta Mestre</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/dgorc/formularios/formularios" target="_self">Formulários</a>
-			
-			<a class="fcc-btn" href="http://10.193.69.29/ceofisp/fe/fornecedor/login.php" target="_self">Fornecedores</a>
-			
-			<a class="fcc-btn" href="http://ssp0106/ceofisp/sistema/gcop/gcop_direto/login.php" target="_self">GCOP</a>
+            <a class="fcc-btn" href="http://snu0001/mastertool/" target="_self">Ferramenta Mestre</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/dgorc/formularios/formularios" target="_self">Formulários</a>
+            
+            <a class="fcc-btn" href="http://10.193.69.29/ceofisp/fe/fornecedor/login.php" target="_self">Fornecedores</a>
+            
+            <a class="fcc-btn" href="http://ssp0106/ceofisp/sistema/gcop/gcop_direto/login.php" target="_self">GCOP</a>
 
-			<a class="fcc-btn" href="https://gestao.correios.com.br/" target="_self">Gestão Correios</a>
-			
-			<a class="fcc-btn" href="http://snu0037/gestao/login" target="_self">Gestão Distribuição</a>
-			
-			<a class="fcc-btn" href="https://gnc.correiosnet.int/gnc/" target="_self">GNC</a>
+            <a class="fcc-btn" href="https://gestao.correios.com.br/" target="_self">Gestão Correios</a>
+            
+            <a class="fcc-btn" href="http://snu0037/gestao/login" target="_self">Gestão Distribuição</a>
+            
+            <a class="fcc-btn" href="https://gnc.correiosnet.int/gnc/" target="_self">GNC</a>
 
-			<a class="fcc-btn" href="https://gss.correios.com.br/app/index.php" target="_self">GSS</a>
-			
-			<a class="fcc-btn" href="https://itsm.correiosnet.int/arsys/shared/login.jsp?/arsys/" target="_self">Help Desk</a>
-			
-			<a class="fcc-btn" href="https://correiosbrasil.sharepoint.com/:x:/r/sites/MG-SE-GERAT-REATE06/Documentos%20Compartilhados/CAT_REATE06/AGENCIAS/EWBANK%20DA%20CAMARA.xlsx?d=w59c8f8108f224019b143d4256194b6b3&e=4%3a67800da2417645d28f21816e84f6ecf2&sharingv2=true&fromShare=true&at=9" target="_self">Informações AC Ewbank da Câmara</a>
-			
-			<a class="fcc-btn" href="http://10.86.176.201/index.html" target="_self">Impressora Pantum</a>
-			
-			<a class="fcc-btn" href="https://atendimento.inss.gov.br" target="_self">INSS - Gerid</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cac" target="_self">Intranet CAC</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/mg" target="_self">Intranet MG</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/diope/sistemas" target="_self">Link Sistemas</a>
+            <a class="fcc-btn" href="https://gss.correios.com.br/app/index.php" target="_self">GSS</a>
+            
+            <a class="fcc-btn" href="https://itsm.correiosnet.int/arsys/shared/login.jsp?/arsys/" target="_self">Help Desk</a>
+            
+            <a class="fcc-btn" href="https://correiosbrasil.sharepoint.com/:x:/r/sites/MG-SE-GERAT-REATE06/Documentos%20Compartilhados/CAT_REATE06/AGENCIAS/EWBANK%20DA%20CAMARA.xlsx?d=w59c8f8108f224019b143d4256194b6b3&e=4%3a67800da2417645d28f21816e84f6ecf2&sharingv2=true&fromShare=true&at=9" target="_self">Informações AC Ewbank da Câmara</a>
+            
+            <a class="fcc-btn" href="http://10.86.176.201/index.html" target="_self">Impressora Pantum</a>
+            
+            <a class="fcc-btn" href="https://atendimento.inss.gov.br" target="_self">INSS - Gerid</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cac" target="_self">Intranet CAC</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/mg" target="_self">Intranet MG</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/diope/sistemas" target="_self">Link Sistemas</a>
 
-			<a class="fcc-btn" href="https://forms.office.com/pages/responsepage.aspx?id=9Z0GAC-sp0y5pdmf6jerAjGh9Urz4FtHgUOPu-MvNtxUMlJNNEFVWDc5TkFGWFhZTDJTUUhVRVdYUi4u&route=shorturl" target="_self">Link Visitas 2026</a>
-			
-			<a class="fcc-btn" href="http://normas.correios.com.br/" target="_self">Manuais</a>
+            <a class="fcc-btn" href="https://forms.office.com/pages/responsepage.aspx?id=9Z0GAC-sp0y5pdmf6jerAjGh9Urz4FtHgUOPu-MvNtxUMlJNNEFVWDc5TkFGWFhZTDJTUUhVRVdYUi4u&route=shorturl" target="_self">Link Visitas 2026</a>
+            
+            <a class="fcc-btn" href="http://normas.correios.com.br/" target="_self">Manuais</a>
 
-			<a class="fcc-btn" href="http://snu0001.correiosnet.int/mastertool/" target="_self">Master Tool</a>
+            <a class="fcc-btn" href="http://snu0001.correiosnet.int/mastertool/" target="_self">Master Tool</a>
 
-			<a class="fcc-btn" href="http://mmg20384994/teste/dados/filtro_possivel_ficticio.php" target="_self">Objeto Fictício</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/catalogo-de-servicos/para-o-empregado" target="_self">Para o Empregado</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/catalogo-de-servicos/para-o-gestor" target="_self">Para o Gestor</a>
+            <a class="fcc-btn" href="http://mmg20384994/teste/dados/filtro_possivel_ficticio.php" target="_self">Objeto Fictício</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/catalogo-de-servicos/para-o-empregado" target="_self">Para o Empregado</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/catalogo-de-servicos/para-o-gestor" target="_self">Para o Gestor</a>
 
-			<a class="fcc-btn" href="https://correiosbrasil.sharepoint.com/sites/MG-COPER-GERAT/Documentos%20Compartilhados/Forms/AllItems.aspx?ct=1681147949570&or=OWA%2DNT&ga=1&CT=1741897061409&OR=OWA%2DNT%2DMail&CID=a54db16f%2Df0c2%2D3900%2D72d5%2D36d1ed9b8745&id=%2Fsites%2FMG%2DCOPER%2DGERAT%2FDocumentos%20Compartilhados%2FGeneral%2FPUBLICO%2FSGRP&viewid=bb71ee74%2Db159%2D4519%2D950e%2D0fdf8cb71321" target="_self">Pasta da GERAT</a>
+            <a class="fcc-btn" href="https://correiosbrasil.sharepoint.com/sites/MG-COPER-GERAT/Documentos%20Compartilhados/Forms/AllItems.aspx?ct=1681147949570&or=OWA%2DNT&ga=1&CT=1741897061409&OR=OWA%2DNT%2DMail&CID=a54db16f%2Df0c2%2D3900%2D72d5%2D36d1ed9b8745&id=%2Fsites%2FMG%2DCOPER%2DGERAT%2FDocumentos%20Compartilhados%2FGeneral%2FSGRP&viewid=bb71ee74%2Db159%2D4519%2D950e%2D0fdf8cb71321" target="_self">Pasta da GERAT</a>
 
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/dirad/contratacoes-corporativas/contratacoes_corporativas/pequenas-despesas-spd" target="_self">Pequenas Despesas</a>
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/dirad/contratacoes-corporativas/contratacoes_corporativas/pequenas-despesas-spd" target="_self">Pequenas Despesas</a>
 
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/dineg/sucom/varejo/varejo-1/" target="_self">POPs Varejo</a>
-			
-			<a class="fcc-btn" href="https://www.postalsaude.com.br/" target="_self">Postal Saúde</a>
-			
-			<a class="fcc-btn" href="https://postalisonline.postalis.org.br/login!logout.action" target="_self">Postalis</a>
-			
-			<a class="fcc-btn" href="https://app.powerbi.com/home?cmpid=pbi-home-body-snn-signin" target="_self">Power BI</a>
-			
-			<a class="fcc-btn" href="http://10.87.196.228:82/app_prazo_1/" target="_self">Prazos (Macro)</a>
-			
-			<a class="fcc-btn" href="https://scpp.correiosnet.int/scpp/prazo/default.cfm" target="_self">Preços e Prazos</a>
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/dineg/sucom/varejo/varejo-1/" target="_self">POPs Varejo</a>
+            
+            <a class="fcc-btn" href="https://www.postalsaude.com.br/" target="_self">Postal Saúde</a>
+            
+            <a class="fcc-btn" href="https://postalisonline.postalis.org.br/login!logout.action" target="_self">Postalis</a>
+            
+            <a class="fcc-btn" href="https://app.powerbi.com/home?cmpid=pbi-home-body-snn-signin" target="_self">Power BI</a>
+            
+            <a class="fcc-btn" href="http://10.87.196.228:82/app_prazo_1/" target="_self">Prazos (Macro)</a>
+            
+            <a class="fcc-btn" href="https://scpp.correiosnet.int/scpp/prazo/default.cfm" target="_self">Preços e Prazos</a>
 
-			<a class="fcc-btn" href="http://mmg20385003:8100/" target="_self">Prefeituras (Link Exclusivo)</a>
+            <a class="fcc-btn" href="http://mmg20385003:8100/" target="_self">Prefeituras (Link Exclusivo)</a>
 
-			<a class="fcc-btn" href="https://proneg.correios.com.br/" target="_self">PRONEG</a>
-			
-			<a class="fcc-btn" href="https://app.correiosnet.int/SPNWEB/" target="_self">PROTER</a>
-			
-			<a class="fcc-btn" href="https://pser.correiosnet.int/pser/portal/" target="_self">PSER</a>
-			
-			<a class="fcc-btn" href="https://srointranet.correios.com.br/" target="_self">Rastreamento Unificado</a>
-			
-			<a class="fcc-btn" href="https://ssp0118/gst/interno/reset_senha/index.php" target="_self">Resetar Senha</a>
+            <a class="fcc-btn" href="https://proneg.correios.com.br/" target="_self">PRONEG</a>
+            
+            <a class="fcc-btn" href="https://app.correiosnet.int/SPNWEB/" target="_self">PROTER</a>
+            
+            <a class="fcc-btn" href="https://pser.correiosnet.int/pser/portal/" target="_self">PSER</a>
+            
+            <a class="fcc-btn" href="https://srointranet.correios.com.br/" target="_self">Rastreamento Unificado</a>
+            
+            <a class="fcc-btn" href="https://ssp0118/gst/interno/reset_senha/index.php" target="_self">Resetar Senha</a>
 
-			<a class="fcc-btn" href="https://intra.correios.com.br/CS/INTERACAO_COM_CLIENTE/GESTAO_DE_PRODUTOS/PRODUTOS_E_SERVICOS/CICLO_DE_VIDA_PORTF_DE_PRODUT/" target="_self">Resumo de Serviço</a>
-			
-			<a class="fcc-btn" href="https://rh24horas.correios.com.br/populis/seguranca/login-rh24-frame.do" target="_self">RH 24H</a>
-			
-			<a class="fcc-btn" href="https://gestor.correios.com.br/" target="_self">RH 24H Gestor</a>
+            <a class="fcc-btn" href="https://intra.correios.com.br/CS/INTERACAO_COM_CLIENTE/GESTAO_DE_PRODUTOS/PRODUTOS_E_SERVICOS/CICLO_DE_VIDA_PORTF_DE_PRODUT/" target="_self">Resumo de Serviço</a>
+            
+            <a class="fcc-btn" href="https://rh24horas.correios.com.br/populis/seguranca/login-rh24-frame.do" target="_self">RH 24H</a>
+            
+            <a class="fcc-btn" href="https://gestor.correios.com.br/" target="_self">RH 24H Gestor</a>
 
-			<a class="fcc-btn" href="https://servicosrh.correios.com.br/home" target="_self">RH Novo</a>
+            <a class="fcc-btn" href="https://servicosrh.correios.com.br/home" target="_self">RH Novo</a>
 
-			<a class="fcc-btn" href="https://saerp.correios.com.br/app/index.php" target="_self">SAERP</a>
-			
-			<a class="fcc-btn" href="https://sapppmobile.correios.com.br/app/" target="_self">SAPPP</a>
-			
-			<a class="fcc-btn" href="https://sapra.correios.com.br/app/index.php" target="_self">SAPRA</a>
-			
-			<a class="fcc-btn" href="https://scol.correiosnet.int/scol/default.cfm" target="_self">SCOL</a>
-			
-			<a class="fcc-btn" href="https://sei.correios.com.br/" target="_self">SEI</a>
-			
-			<a class="fcc-btn" href="https://sgd.correios.com.br/sgd/app/" target="_self">SGD</a>
-			
-			<a class="fcc-btn" href="http://sgm/ect/jsp/IndexDR.jsp" target="_self">SGM</a>
-			
-			<a class="fcc-btn" href="https://sgp.correios.com.br/" target="_self">SGP</a>
-			
-			<a class="fcc-btn" href="https://sgpd.correios.com.br/" target="_self">SGPD</a>
-			
-			<a class="fcc-btn" href="http://snu0075/sgru/login" target="_self">SGRU</a>
-			
-			<a class="fcc-btn" href="file://///Sac1940/mg/PROJETOS/SIG/SIG.HTML" target="_self">SIG</a>
-			
-			<a class="fcc-btn" href="https://sigma.correiosnet.int/sigma/default.cfm" target="_self">SIGMA</a>
+            <a class="fcc-btn" href="https://saerp.correios.com.br/app/index.php" target="_self">SAERP</a>
+            
+            <a class="fcc-btn" href="https://sapppmobile.correios.com.br/app/" target="_self">SAPPP</a>
+            
+            <a class="fcc-btn" href="https://sapra.correios.com.br/app/index.php" target="_self">SAPRA</a>
+            
+            <a class="fcc-btn" href="https://scol.correiosnet.int/scol/default.cfm" target="_self">SCOL</a>
+            
+            <a class="fcc-btn" href="https://sei.correios.com.br/" target="_self">SEI</a>
+            
+            <a class="fcc-btn" href="https://sgd.correios.com.br/sgd/app/" target="_self">SGD</a>
+            
+            <a class="fcc-btn" href="http://sgm/ect/jsp/IndexDR.jsp" target="_self">SGM</a>
+            
+            <a class="fcc-btn" href="https://sgp.correios.com.br/" target="_self">SGP</a>
+            
+            <a class="fcc-btn" href="https://sgpd.correios.com.br/" target="_self">SGPD</a>
+            
+            <a class="fcc-btn" href="http://snu0075/sgru/login" target="_self">SGRU</a>
+            
+            <a class="fcc-btn" href="file://///Sac1940/mg/PROJETOS/SIG/SIG.HTML" target="_self">SIG</a>
+            
+            <a class="fcc-btn" href="https://sigma.correiosnet.int/sigma/default.cfm" target="_self">SIGMA</a>
 
-			<a class="fcc-btn" href="http://mes14031475:82/sigo/" target="_self">SIGO</a>
-			
-			<a class="fcc-btn" href="https://siscap.correios.com.br/" target="_self">SISCAP</a>
+            <a class="fcc-btn" href="http://mes14031475:82/sigo/" target="_self">SIGO</a>
+            
+            <a class="fcc-btn" href="https://siscap.correios.com.br/" target="_self">SISCAP</a>
 
-			<a class="fcc-btn" href="https://apps.correios.com.br/smt/" target="_self">SMT - Telegrama</a>
-			
-			<a class="fcc-btn" href="https://sromonitor.correios.com.br/" target="_self">SRO Monitor</a>
-			
-			<a class="fcc-btn" href="https://sroweb.correios.com.br/" target="_self">SRO Web</a>
-			
-			<a class="fcc-btn" href="https://srp.correios.com.br/registrodeponto/login.jsf" target="_self">SRP</a>
-			
-			<a class="fcc-btn" href="https://app.correiosnet.int/edei/" target="_self">SSI</a>
-			
-			<a class="fcc-btn" href="http://sst.correios.com.br/" target="_self">SST</a>
+            <a class="fcc-btn" href="https://apps.correios.com.br/smt/" target="_self">SMT - Telegrama</a>
+            
+            <a class="fcc-btn" href="https://sromonitor.correios.com.br/" target="_self">SRO Monitor</a>
+            
+            <a class="fcc-btn" href="https://sroweb.correios.com.br/" target="_self">SRO Web</a>
+            
+            <a class="fcc-btn" href="https://srp.correios.com.br/registrodeponto/login.jsf" target="_self">SRP</a>
+            
+            <a class="fcc-btn" href="https://app.correiosnet.int/edei/" target="_self">SSI</a>
+            
+            <a class="fcc-btn" href="http://sst.correios.com.br/" target="_self">SST</a>
 
-			<a class="fcc-btn" href="https://www.telesena.com.br/" target="_self">Tele Sena</a>
+            <a class="fcc-btn" href="https://www.telesena.com.br/" target="_self">Tele Sena</a>
 
-			<a class="fcc-btn" href="https://intra.correios.com.br/CS/SUPORTE/PESSOAS/DESENVOLVER/EDUCACAO_CORPORATIVA/BANCO_DE_TLT/" target="_self">TLT</a>
-			
-			<a class="fcc-btn" href="https://roteirizacao.correios.com.br/TMS/Operations" target="_self">TMS</a>
+            <a class="fcc-btn" href="https://intra.correios.com.br/CS/SUPORTE/PESSOAS/DESENVOLVER/EDUCACAO_CORPORATIVA/BANCO_DE_TLT/" target="_self">TLT</a>
+            
+            <a class="fcc-btn" href="https://roteirizacao.correios.com.br/TMS/Operations" target="_self">TMS</a>
 
-			<a class="fcc-btn" href="https://univirtual.correios.com.br/" target="_self">Unicorreios EAD</a>
-			
-			<a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/voce-consulta" target="_self">Você Consulta</a>
+            <a class="fcc-btn" href="https://univirtual.correios.com.br/" target="_self">Unicorreios EAD</a>
+            
+            <a class="fcc-btn" href="https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/voce-consulta" target="_self">Você Consulta</a>
 
-			<a class="fcc-btn" href="https://correiosbrasil.sharepoint.com/sites/MG-SE-COSUP-GEPES/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FMG%2DSE%2DCOSUP%2DGEPES%2FDocumentos%20Compartilhados%2FGeneral%2FSGGPE%2FVale%5Ftransporte%2FPautas%5FVT%5Fpara%5Fimpressao&viewid=b2d51090%2Df0f8%2D4796%2D8d7c%2Dac75fbf3f2e3&CT=1746712530107&OR=OWA%2DNTB%2DMail&CID=d4e26a57%2Daf31%2D1b09%2D1d6f%2D2b933a117c5a&ct=1666200541592&or=OWA%2DNT&ga=1" target="_self">Vale Transporte</a>
+            <a class="fcc-btn" href="https://correiosbrasil.sharepoint.com/sites/MG-SE-COSUP-GEPES/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FMG%2DSE%2DCOSUP%2DGEPES%2FDocumentos%20Compartilhados%2FGeneral%2FSGGPE%2FVale%5Ftransporte%2FPautas%5FVT%5Fpara%5Fimpressao&viewid=b2d51090%2Df0f8%2D4796%2D8d7c%2Dac75fbf3f2e3&CT=1746712530107&OR=OWA%2DNTB%2DMail&CID=d4e26a57%2Daf31%2D1b09%2D1d6f%2D2b933a117c5a&ct=1666200541592&or=OWA%2DNT&ga=1" target="_self">Vale Transporte</a>
 
-			<a class="fcc-btn" href="https://asp.correiosnet.int/websaude/absenteismo/principal.asp" target="_self">WEB Saúde</a>
-			
-			<a class="fcc-btn" href="http://intranetsistemasce/WEBSUN/SUNOESTE/SUN.cfm" target="_self">WEBSUN</a>
-			
-		</div>
-		
-		<footer id="footer">Versão 1.1 - Copyright - Josinei Dornelas - 2024</footer> 
-		
-	</div>
-	
-	
-	
-	<!--      <a class="fcc-btn" href="#" target="_self">Modelo</a>  -->
-	  
-	
-
-	
-	
+            <a class="fcc-btn" href="https://asp.correiosnet.int/websaude/absenteismo/principal.asp" target="_self">WEB Saúde</a>
+            
+            <a class="fcc-btn" href="http://intranetsistemasce/WEBSUN/SUNOESTE/SUN.cfm" target="_self">WEBSUN</a>
+            
+        </div>
+        
+        <!-- Rodapé sólido fixado no fundo -->
+        <footer id="footer">Versão 2.0 - Copyright - Josinei Dornelas - 2024</footer> 
+        
+    </div>
   </body>
 </html>
-
